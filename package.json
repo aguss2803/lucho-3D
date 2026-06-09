@@ -14,9 +14,9 @@
   "dependencies": {
     "autoprefixer": "^10.4.14",
     "bcryptjs": "^2.4.3",
-    "next-auth": "^4.22.1",
     "cookie": "^0.5.0",
     "next": "^13.5.7",
+    "next-auth": "^4.22.1",
     "pdfkit": "^0.13.0",
     "postcss": "^8.4.23",
     "prisma": "^5.6.1",
@@ -26,14 +26,16 @@
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "@types/node": "^20.4.2",
-    "@types/react": "^18.2.21",
+    "@prisma/client": "^5.6.1",
     "@types/cookie": "^0.5.1",
     "@types/jsonwebtoken": "^9.0.2",
+    "@types/node": "^20.4.2",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^18.2.21",
     "eslint": "^8.47.0",
     "eslint-config-next": "^13.5.7",
+    "nodemailer": "^8.0.10",
     "prettier": "^3.0.0",
-    "typescript": "^5.5.6",
-    "@prisma/client": "^5.6.1"
+    "typescript": "^5.5.6"
   }
 }
