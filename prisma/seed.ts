@@ -4,16 +4,6 @@ import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
-<<<<<<< HEAD
-  const password = await bcrypt.hash('admin123', 10)
-  await prisma.user.upsert({
-    where: { email: 'admin@example.com' },
-    update: {},
-    create: {
-      email: 'admin@example.com',
-      name: 'Owner',
-      password,
-=======
   // 1. Hashear contraseñas
   const adminPassword = await bcrypt.hash('admin123', 10)
   const userPassword = await bcrypt.hash('user123', 10)
@@ -26,21 +16,10 @@ async function main() {
       email: 'admin@example.com',
       name: 'Owner',
       password: adminPassword,
->>>>>>> 316156080686bc0d5c75d397441cb8390006cf9d
       role: 'OWNER',
     },
   })
 
-<<<<<<< HEAD
-  const userPass = await bcrypt.hash('user123', 10)
-  await prisma.user.upsert({
-    where: { email: 'user@example.com' },
-    update: {},
-    create: {
-      email: 'user@example.com',
-      name: 'Cliente',
-      password: userPass,
-=======
   // 3. Crear o actualizar Cliente estándar
   await prisma.user.upsert({
     where: { email: 'user@example.com' },
@@ -49,19 +28,15 @@ async function main() {
       email: 'user@example.com',
       name: 'Cliente',
       password: userPassword,
->>>>>>> 316156080686bc0d5c75d397441cb8390006cf9d
       role: 'USER',
     },
   })
 
-<<<<<<< HEAD
-=======
   // 4. Limpiar productos viejos para evitar duplicados / errores de ID
   // (Esto borra los productos antes de sembrar los nuevos, asegurando un estado limpio)
   await prisma.product.deleteMany({})
 
   // 5. Cargar productos iniciales
->>>>>>> 316156080686bc0d5c75d397441cb8390006cf9d
   await prisma.product.createMany({
     data: [
       {
@@ -85,11 +60,8 @@ async function main() {
       },
     ],
   })
-<<<<<<< HEAD
-=======
 
   console.log('🌱 Base de datos sembrada con éxito.')
->>>>>>> 316156080686bc0d5c75d397441cb8390006cf9d
 }
 
 main()
@@ -99,8 +71,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect()
-<<<<<<< HEAD
   })
-=======
-  })
->>>>>>> 316156080686bc0d5c75d397441cb8390006cf9d
