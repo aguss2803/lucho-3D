@@ -4,30 +4,39 @@ import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
-  const password = await bcrypt.hash('admin123', 10)
+  // 1. Hashear contraseñas
+  const adminPassword = await bcrypt.hash('admin123', 10)
+  const userPassword = await bcrypt.hash('user123', 10)
+
+  // 2. Crear o actualizar Administrador
   await prisma.user.upsert({
     where: { email: 'admin@example.com' },
-    update: {},
+    update: { password: adminPassword }, // Fuerza la contraseña correcta si ya existe
     create: {
       email: 'admin@example.com',
       name: 'Owner',
-      password,
+      password: adminPassword,
       role: 'OWNER',
     },
   })
 
-  const userPass = await bcrypt.hash('user123', 10)
+  // 3. Crear o actualizar Cliente estándar
   await prisma.user.upsert({
     where: { email: 'user@example.com' },
-    update: {},
+    update: { password: userPassword }, // Fuerza la contraseña correcta si ya existe
     create: {
       email: 'user@example.com',
       name: 'Cliente',
-      password: userPass,
+      password: userPassword,
       role: 'USER',
     },
   })
 
+  // 4. Limpiar productos viejos para evitar duplicados / errores de ID
+  // (Esto borra los productos antes de sembrar los nuevos, asegurando un estado limpio)
+  await prisma.product.deleteMany({})
+
+  // 5. Cargar productos iniciales
   await prisma.product.createMany({
     data: [
       {
@@ -51,6 +60,8 @@ async function main() {
       },
     ],
   })
+
+  console.log('🌱 Base de datos sembrada con éxito.')
 }
 
 main()
