@@ -9,7 +9,7 @@ export default function ProductPage({ product }: { product: Product | null }) {
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
-      {product.image && <Image src={product.image} alt={product.title} width={256} height={256} className="w-64 h-64 object-cover mb-4" />}
+      {product.image && <Image src={product.image} alt={product.title} width={256} height={256} className="w-64 h-64 object-cover" />}
       <div className="mb-4">{product.description}</div>
       <div className="text-xl font-bold">${product.price.toFixed(2)}</div>
     </div>
