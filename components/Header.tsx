@@ -37,8 +37,8 @@ export default function Header() {
     <header className="bg-gradient-to-r from-teal-100 to-sky-100 text-slate-800 shadow-sm">
       <div className="container mx-auto p-4 flex items-center justify-between">
         <button onClick={() => router.push(session ? '/home' : '/')} className="text-2xl font-bold flex items-center gap-2 hover:opacity-80 transition-opacity"> 
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L15 8l6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
-          Lucho 3D
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" viewBox="0 0 24 24" fill="none" ><path d="M12 2L15 8l6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z"/></svg>
+          AL<br></br>alforge3dstudio
         </button>
         <nav className="flex items-center gap-4">
           <Link href="/offers" className="hover:underline flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 12h-16M12 4v16"/></svg> Ofertas</Link>
