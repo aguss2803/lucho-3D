@@ -8,6 +8,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!filename || !data) return res.status(400).json({ error: 'missing' })
 
   try {
+
+    const base64Data = data.includes(',') ? data.split(',')[1] : data
     // 1. Convertimos el string base64 que te llega a un Buffer binario
     const buffer = Buffer.from(data, 'base64')
 
@@ -18,7 +20,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // 3. Devolvemos la URL web real generada por Vercel
     return res.status(200).json({ url: blob.url })
-  } catch (error) {
+  } catch (error) { 
+    console.error('Error al subir:', error) //
     return res.status(500).json({ error: 'Error al subir a Vercel Blob' })
   }
 }
